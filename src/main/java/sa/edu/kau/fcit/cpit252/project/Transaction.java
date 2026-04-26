@@ -1,7 +1,9 @@
 package sa.edu.kau.fcit.cpit252.project;
 import java.util.*;
 import java.time.LocalDateTime;
-abstract class Transaction {
+
+
+abstract class Transaction  {
 
     private final double amount;
     private final String description;
