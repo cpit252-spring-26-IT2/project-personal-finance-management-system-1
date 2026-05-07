@@ -18,4 +18,5 @@ class AccountSubsystem {
     public double getBalance() {
         return balance;
     }
+    public List<Transaction> getTransactions() { return transactions; }
 }

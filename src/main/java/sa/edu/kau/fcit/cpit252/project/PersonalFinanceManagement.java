@@ -5,11 +5,13 @@ public class PersonalFinanceManagement {
     private AccountSubsystem account;
     private TransactionFactory incomeFactory;
     private TransactionFactory expenseFactory;
+    private TransactionHistorySubsystem history;
 
     public PersonalFinanceManagement() {
         this.account = new AccountSubsystem();
         this.incomeFactory = new IncomeFactory();
         this.expenseFactory = new ExpenseFactory();
+        this.history    = new TransactionHistorySubsystem();
     }
 
     public void addIncome(double amount, String description) {
@@ -31,5 +33,7 @@ public class PersonalFinanceManagement {
         System.out.println("\n=== Your Financial Dashboard ===");
         System.out.println("Current Available Balance: $" + balance);
         System.out.println("================================\n");
+
+        history.printHistory(account.getTransactions());
     }
 }
