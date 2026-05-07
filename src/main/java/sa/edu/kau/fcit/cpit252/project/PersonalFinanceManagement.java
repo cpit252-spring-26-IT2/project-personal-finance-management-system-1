@@ -7,6 +7,7 @@ public class PersonalFinanceManagement {
     private TransactionFactory expenseFactory;
     private TransactionHistorySubsystem history;
     private SavingsSubsystem savings;
+    private InvestmentSubsystem investment;
 
     public PersonalFinanceManagement() {
         this.account = new AccountSubsystem();
@@ -14,6 +15,7 @@ public class PersonalFinanceManagement {
         this.expenseFactory = new ExpenseFactory();
         this.history = new TransactionHistorySubsystem();
         this.savings = new SavingsSubsystem();
+        this.investment = new InvestmentSubsystem();
     }
 
     public void addIncome(double amount, String description) {
@@ -47,11 +49,14 @@ public class PersonalFinanceManagement {
     public void viewDashboard() {
         double balance = account.getBalance();
         double salary = account.getMonthlySalary();
+        double monthlySaving = savings.isGoalSet() ? savings.getMonthlySavings() : 0.0;
+
         System.out.println("\n=== Your Financial Dashboard ===");
         System.out.println("Current Available Balance: $" + balance);
         System.out.println("================================\n");
 
         history.printHistory(account.getTransactions());
         savings.printSavingsPlan(salary);
+        investment.printAdvice(balance, salary, monthlySaving);
     }
 }
