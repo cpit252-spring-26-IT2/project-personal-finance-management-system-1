@@ -6,12 +6,14 @@ public class PersonalFinanceManagement {
     private TransactionFactory incomeFactory;
     private TransactionFactory expenseFactory;
     private TransactionHistorySubsystem history;
+    private SavingsSubsystem savings;
 
     public PersonalFinanceManagement() {
         this.account = new AccountSubsystem();
         this.incomeFactory = new IncomeFactory();
         this.expenseFactory = new ExpenseFactory();
-        this.history    = new TransactionHistorySubsystem();
+        this.history = new TransactionHistorySubsystem();
+        this.savings = new SavingsSubsystem();
     }
 
     public void addIncome(double amount, String description) {
@@ -28,12 +30,28 @@ public class PersonalFinanceManagement {
         System.out.println("Recorded Expense: " + amount + " SAR (" + description + ")");
     }
 
+    public void addSalary(double amount, String description)
+    {
+        Transaction income = incomeFactory.createTransaction(amount, description);
+        account.addTransaction(income);
+        account.setMonthlySalary(amount);
+        System.out.println("Recorded Salary : " + amount + " SAR (" + description + ")");
+    }
+
+    public void setSavingsGoal(double targetAmount, int durationMonths) {
+        savings.setSavingsGoal(targetAmount, durationMonths, account.getMonthlySalary());
+        System.out.println("\n=== Savings Goal ===");
+        System.out.println("Savings goal: " + targetAmount + " SAR during " + durationMonths + " months.");
+    }
+
     public void viewDashboard() {
         double balance = account.getBalance();
+        double salary = account.getMonthlySalary();
         System.out.println("\n=== Your Financial Dashboard ===");
         System.out.println("Current Available Balance: $" + balance);
         System.out.println("================================\n");
 
         history.printHistory(account.getTransactions());
+        savings.printSavingsPlan(salary);
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 class AccountSubsystem {
     private List<Transaction> transactions = new ArrayList<>();
     private double balance = 0.0;
+    private double monthlySalary = 0.0;
 
     public void addTransaction(Transaction t) {
         transactions.add(t);
@@ -14,7 +15,14 @@ class AccountSubsystem {
             balance -= t.getAmount();
         }
     }
+    public void setMonthlySalary(double salary) {
+        this.monthlySalary = salary;
+    }
 
+    public double getMonthlySalary()
+    {
+        return monthlySalary;
+    }
     public double getBalance() {
         return balance;
     }
