@@ -4,7 +4,8 @@ public class App {
     public static void main(String[] args)
     {
         // Clients do not need to manually handle the subsystems or the factories.
-        PersonalFinanceManagement app = new PersonalFinanceManagement();
+        // Singleton Pattern
+        PersonalFinanceManagement app = PersonalFinanceManagement.getInstance();
 
         app.addSalary(6000, "Monthly Salary");
         app.addIncome(450, "gift");

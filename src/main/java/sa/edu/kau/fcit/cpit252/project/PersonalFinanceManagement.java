@@ -2,6 +2,9 @@ package sa.edu.kau.fcit.cpit252.project;
 
 // This class acts as the Facade, simplifying the interactions for the client.
 public class PersonalFinanceManagement {
+
+
+
     private AccountSubsystem account;
     private TransactionFactory incomeFactory;
     private TransactionFactory expenseFactory;
@@ -9,13 +12,22 @@ public class PersonalFinanceManagement {
     private SavingsSubsystem savings;
     private InvestmentSubsystem investment;
 
-    public PersonalFinanceManagement() {
+    private static PersonalFinanceManagement instance;
+
+    private PersonalFinanceManagement() {
         this.account = new AccountSubsystem();
         this.incomeFactory = new IncomeFactory();
         this.expenseFactory = new ExpenseFactory();
         this.history = new TransactionHistorySubsystem();
         this.savings = new SavingsSubsystem();
         this.investment = new InvestmentSubsystem();
+    }
+// singloton
+    public static PersonalFinanceManagement getInstance() {
+        if (instance == null) {
+            instance = new PersonalFinanceManagement();
+        }
+        return instance;
     }
 
     public void addIncome(double amount, String description) {
@@ -58,5 +70,7 @@ public class PersonalFinanceManagement {
         history.printHistory(account.getTransactions());
         savings.printSavingsPlan(salary);
         investment.printAdvice(balance, salary, monthlySaving);
+
+
     }
 }
