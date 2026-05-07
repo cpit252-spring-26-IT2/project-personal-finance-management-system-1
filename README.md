@@ -7,9 +7,10 @@ receive basic investment advice based on their financial situation. It simplifie
 decision-making and promotes better money management habits. 
 
 ## Features
-- Core: Tracks detailed income & expenses history with a simple description of the amount's source.
+- Tracks detailed income & expenses history with a simple description of the amount's source.
 - Recommends an accurate risk-level investment to the user depending on his current balance and monthly income.
-- Recommends to the user a specific percentage that will be deducted from the user's main monthly income (salary) and added to the "savings goal" option. This recommendation depends on the user's demanded saved amount in how much duration. 
+- Recommends to the user a specific percentage that will be deducted from the user's main monthly income (salary) and added to the "savings goal" option.
+  This recommendation depends on the user's demanded saved amount in how much duration. 
 
 
 ## Usage
