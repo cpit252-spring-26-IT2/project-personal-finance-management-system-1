@@ -10,8 +10,8 @@ public class App {
         app.addSalary(6000, "Monthly Salary");
         app.addIncome(450, "gift");
         app.addExpense(1200, "Rent");
+        app.addExpense(1800,"Observer test");
         app.addExpense(150, "Groceries");
-
         app.setSavingsGoal(15000, 6);
 
 

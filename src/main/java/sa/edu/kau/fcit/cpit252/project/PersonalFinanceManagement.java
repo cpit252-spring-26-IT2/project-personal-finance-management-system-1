@@ -12,6 +12,7 @@ public class PersonalFinanceManagement {
     private SavingsSubsystem savings;
     private InvestmentSubsystem investment;
 
+
     private static PersonalFinanceManagement instance;
 
     private PersonalFinanceManagement() {
@@ -21,6 +22,7 @@ public class PersonalFinanceManagement {
         this.history = new TransactionHistorySubsystem();
         this.savings = new SavingsSubsystem();
         this.investment = new InvestmentSubsystem();
+        this.account.addObserver(new HighExpenseAlert());
     }
 // singloton
     public static PersonalFinanceManagement getInstance() {

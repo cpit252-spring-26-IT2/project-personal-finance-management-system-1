@@ -2,10 +2,11 @@ package sa.edu.kau.fcit.cpit252.project;
 import java.util.ArrayList;
 import java.util.List;
 
-class AccountSubsystem {
+class AccountSubsystem implements Subject {
     private List<Transaction> transactions = new ArrayList<>();
     private double balance = 0.0;
     private double monthlySalary = 0.0;
+    private List<FinanceObserver> observers = new ArrayList<>();
 
     public void addTransaction(Transaction t) {
         transactions.add(t);
@@ -14,6 +15,7 @@ class AccountSubsystem {
         } else {
             balance -= t.getAmount();
         }
+        notifyObservers(t);
     }
     public void setMonthlySalary(double salary) {
         this.monthlySalary = salary;
@@ -27,4 +29,21 @@ class AccountSubsystem {
         return balance;
     }
     public List<Transaction> getTransactions() { return transactions; }
+
+    @Override
+    public void addObserver(FinanceObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(FinanceObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(Transaction transaction) {
+        for (FinanceObserver observer : observers) {
+            observer.update(transaction, balance);
+        }
+    }
 }
